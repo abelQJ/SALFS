@@ -1,4 +1,4 @@
-# $Id: func_check_version.sh 4026 2018-01-13 09:08:56Z pierre $
+# $Id: func_check_version.sh 4026 2018-01-13 09:08:56Z pierre $ 
 
 check_version() {
 : <<inline_doc
