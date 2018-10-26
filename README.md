@@ -1,5 +1,5 @@
 # SALFS
-一个简化版本的自动化[LFS](http://www.linuxfromscratch.org/lfs/)编译框架,软件包对应lfs-8.0
+一个简化版本的自动化[LFS](http://www.linuxfromscratch.org/lfs/)编译框架,软件包对应lfs-8.0,源码包可从项目[SALFS-Sources](https://github.com/abelQJ/SALFS-Sources)下载
 
 该框架部分代码来自[ALFS](http://www.linuxfromscratch.org/alfs/)项目
 
