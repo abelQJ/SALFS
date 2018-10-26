@@ -10,7 +10,7 @@
    sudo mkfs.ext4 /dev/sdb1
    sudo mount /dev/sdb1 /mnt/lfs
    ```
-2. 将ALFS目录和source目录拷贝至/mnt/lfs下
+2. 将ALFS目录和source目录拷贝至/mnt/lfs下,source目录从[SALFS-Sources](https://github.com/abelQJ/SALFS-Sources)下载
 3. 修改/mnt/lfs目录为任意用户可读写
    ```
    sudo chmod a+rwx /mnt/lfs
