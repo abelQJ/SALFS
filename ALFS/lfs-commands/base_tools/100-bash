@@ -1,0 +1,17 @@
+#!/bin/bash
+set +h
+set -e
+
+cd $PKGDIR
+patch -Np1 -i ../bash-4.4-upstream_fixes-1.patch
+./configure --prefix=/usr                       \
+            --docdir=/usr/share/doc/bash-4.4 \
+            --without-bash-malloc               \
+            --with-installed-readline
+make
+# chown -Rv nobody . >> $TEST_LOG 2>&1
+# su nobody -s /bin/bash -c "PATH=$PATH make -k tests" >> $TEST_LOG 2>&1 || true
+make install
+mv -vf /usr/bin/bash /bin
+echo -e "\n\nTotalseconds: $SECONDS\n"
+exit

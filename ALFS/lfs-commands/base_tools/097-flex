@@ -1,0 +1,13 @@
+#!/bin/bash
+set +h
+set -e
+
+cd $PKGDIR
+HELP2MAN=/tools/bin/true \
+./configure --prefix=/usr --docdir=/usr/share/doc/flex-2.6.3
+make
+# make -k check >> $TEST_LOG 2>&1 || true
+make install
+ln -sv flex /usr/bin/lex
+echo -e "\n\nTotalseconds: $SECONDS\n"
+exit

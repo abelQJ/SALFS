@@ -1,0 +1,17 @@
+#!/bin/bash
+set +h
+set -e
+
+cd $PKGDIR
+./configure --prefix=/usr    \
+            --enable-cxx     \
+            --disable-static \
+            --docdir=/usr/share/doc/gmp-6.1.2
+make
+make html
+make -k check 2>&1 | tee gmp-check-log >> $TEST_LOG 2>&1 || true
+awk '/# PASS:/{total+=$3} ; END{print total}' gmp-check-log >> $TEST_LOG 2>&1
+make install
+make install-html
+echo -e "\n\nTotalseconds: $SECONDS\n"
+exit

@@ -1,0 +1,16 @@
+#!/bin/bash
+set +h
+set -e
+
+cd $PKGDIR
+sed -i s/mawk// configure
+./configure --prefix=/tools \
+            --with-shared   \
+            --without-debug \
+            --without-ada   \
+            --enable-widec  \
+            --enable-overwrite
+make
+make install
+echo -e "\n\nTotalseconds: $SECONDS\n"
+exit

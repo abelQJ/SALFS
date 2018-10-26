@@ -1,0 +1,19 @@
+#!/bin/bash
+set +h
+set -e
+
+cd $PKGDIR
+./configure --prefix=/usr                        \
+            --docdir=/usr/share/doc/man-db-2.7.6.1 \
+            --sysconfdir=/etc                    \
+            --disable-setuid                     \
+            --enable-cache-owner=bin             \
+            --with-browser=/usr/bin/lynx         \
+            --with-vgrind=/usr/bin/vgrind        \
+            --with-grap=/usr/bin/grap            \
+            --with-systemdtmpfilesdir=
+make
+# make -k check >> $TEST_LOG 2>&1 || true
+make install
+echo -e "\n\nTotalseconds: $SECONDS\n"
+exit

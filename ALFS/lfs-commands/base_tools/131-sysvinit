@@ -1,0 +1,10 @@
+#!/bin/bash
+set +h
+set -e
+
+cd $PKGDIR
+patch -Np1 -i ../sysvinit-2.88dsf-consolidated-1.patch
+make -C src
+make -C src install
+echo -e "\n\nTotalseconds: $SECONDS\n"
+exit

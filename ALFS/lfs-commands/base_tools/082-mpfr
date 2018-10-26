@@ -1,0 +1,16 @@
+#!/bin/bash
+set +h
+set -e
+
+cd $PKGDIR
+./configure --prefix=/usr        \
+            --disable-static     \
+            --enable-thread-safe \
+            --docdir=/usr/share/doc/mpfr-3.1.5
+make
+make html
+make -k check >> $TEST_LOG 2>&1 || true
+make install
+make install-html
+echo -e "\n\nTotalseconds: $SECONDS\n"
+exit

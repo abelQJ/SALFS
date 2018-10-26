@@ -1,0 +1,13 @@
+#!/bin/bash
+set +h
+set -e
+
+cd $PKGDIR
+./configure --prefix=/usr \
+            --disable-static \
+            --enable-libgdbm-compat
+make
+# make -k check >> $TEST_LOG 2>&1 || true
+make install
+echo -e "\n\nTotalseconds: $SECONDS\n"
+exit

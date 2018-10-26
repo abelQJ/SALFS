@@ -1,0 +1,20 @@
+#!/bin/bash
+set +h
+set -e
+
+cd $PKGDIR
+expect -c "spawn ls" >> $TEST_LOG 2>&1
+mkdir -v build
+cd       build
+../configure --prefix=/usr       \
+             --enable-gold       \
+             --enable-ld=default \
+             --enable-plugins    \
+             --enable-shared     \
+             --disable-werror    \
+             --with-system-zlib
+make tooldir=/usr
+make -k check >> $TEST_LOG 2>&1 || true
+make tooldir=/usr install
+echo -e "\n\nTotalseconds: $SECONDS\n"
+exit

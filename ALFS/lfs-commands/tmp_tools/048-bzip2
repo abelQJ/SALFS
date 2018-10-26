@@ -1,0 +1,9 @@
+#!/bin/bash
+set +h
+set -e
+
+cd $PKGDIR
+make
+make PREFIX=/tools install
+echo -e "\n\nTotalseconds: $SECONDS\n"
+exit

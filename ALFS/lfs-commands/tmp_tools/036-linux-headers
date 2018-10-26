@@ -1,0 +1,11 @@
+#!/bin/bash
+set +h
+set -e
+
+cd $PKGDIR
+make mrproper
+make INSTALL_HDR_PATH=dest headers_install
+
+cp -rv dest/include/* /tools/include
+echo -e "\n\nTotalseconds: $SECONDS\n"
+exit

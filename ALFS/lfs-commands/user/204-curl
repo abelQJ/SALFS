@@ -1,0 +1,25 @@
+#!/bin/bash
+set +h
+set -e
+
+cd $PKGDIR
+patch -Np1 -i ../curl-7.52.1-valgrind_filter-1.patch &&
+./configure --prefix=/usr                           \
+            --disable-static                        \
+            --enable-threaded-resolver              \
+            --with-ca-path=/etc/ssl/certs &&
+make
+
+make install &&
+
+rm -rf docs/examples/.deps &&
+
+find docs \( -name Makefile\* \
+          -o -name \*.1       \
+          -o -name \*.3 \)    \
+          -exec rm {} \;      &&
+install -v -d -m755 /usr/share/doc/curl-7.52.1 &&
+cp -v -R docs/*     /usr/share/doc/curl-7.52.1
+
+echo -e "\n\nTotalseconds: $SECONDS\n"
+exit

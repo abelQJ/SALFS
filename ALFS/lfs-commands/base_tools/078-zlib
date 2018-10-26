@@ -1,0 +1,13 @@
+#!/bin/bash
+set +h
+set -e
+
+cd $PKGDIR
+./configure --prefix=/usr
+make
+# make -k check >> $TEST_LOG 2>&1 || true
+make install
+mv -v /usr/lib/libz.so.* /lib
+ln -sfv ../../lib/$(readlink /usr/lib/libz.so) /usr/lib/libz.so
+echo -e "\n\nTotalseconds: $SECONDS\n"
+exit

@@ -1,0 +1,16 @@
+#!/bin/bash
+set +h
+set -e
+
+cat > /etc/profile << "EOF"
+# Begin /etc/profile
+
+export PS1='\u@\w:'
+export LANG=en_US.UTF-8
+export PATH=$PATH"/usr/local/bin:/usr/local/sbin
+
+
+# End /etc/profile
+EOF
+echo -e "\n\nTotalseconds: $SECONDS\n"
+exit

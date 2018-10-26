@@ -1,0 +1,15 @@
+#!/bin/bash
+set +h
+set -e
+
+cd $PKGDIR
+./configure --prefix=/usr              \
+            --with-internal-glib       \
+            --disable-compile-warnings \
+            --disable-host-tool        \
+            --docdir=/usr/share/doc/pkg-config-0.29.1
+make
+# make -k check >> $TEST_LOG 2>&1 || true
+make install
+echo -e "\n\nTotalseconds: $SECONDS\n"
+exit

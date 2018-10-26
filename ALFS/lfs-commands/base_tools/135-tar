@@ -1,0 +1,14 @@
+#!/bin/bash
+set +h
+set -e
+
+cd $PKGDIR
+FORCE_UNSAFE_CONFIGURE=1  \
+./configure --prefix=/usr \
+            --bindir=/bin
+make
+# make -k check >> $TEST_LOG 2>&1 || true
+make install
+make -C doc install-html docdir=/usr/share/doc/tar-1.29
+echo -e "\n\nTotalseconds: $SECONDS\n"
+exit

@@ -1,0 +1,15 @@
+#!/bin/bash
+set +h
+set -e
+
+cd $PKGDIR
+cd unix
+./configure --prefix=/tools
+make
+# TZ=UTC make -k test >> $TEST_LOG 2>&1 || true
+make install
+chmod -v u+w /tools/lib/libtcl8.6.so
+make install-private-headers
+ln -sv tclsh8.6 /tools/bin/tclsh
+echo -e "\n\nTotalseconds: $SECONDS\n"
+exit

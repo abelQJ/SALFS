@@ -1,0 +1,8 @@
+#!/bin/bash
+set +h
+
+# strip --strip-debug /tools/lib/* || true
+# /usr/bin/strip --strip-unneeded /tools/{,s}bin/* || true
+rm -rf /tools/{,share}/{info,man,doc}
+echo -e "\n\nTotalseconds: $SECONDS\n"
+exit

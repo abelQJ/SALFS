@@ -1,0 +1,12 @@
+#!/bin/bash
+set +h
+set -e
+
+cd $PKGDIR
+./configure --prefix=/usr
+make
+make install
+mv -v /usr/bin/fuser   /bin
+mv -v /usr/bin/killall /bin
+echo -e "\n\nTotalseconds: $SECONDS\n"
+exit

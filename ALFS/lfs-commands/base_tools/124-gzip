@@ -1,0 +1,12 @@
+#!/bin/bash
+set +h
+set -e
+
+cd $PKGDIR
+./configure --prefix=/usr
+make
+# make -k check >> $TEST_LOG 2>&1 || true
+make install
+mv -v /usr/bin/gzip /bin
+echo -e "\n\nTotalseconds: $SECONDS\n"
+exit

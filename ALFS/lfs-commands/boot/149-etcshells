@@ -1,0 +1,14 @@
+#!/bin/bash
+set +h
+set -e
+
+cat > /etc/shells << "EOF"
+# Begin /etc/shells
+
+/bin/sh
+/bin/bash
+
+# End /etc/shells
+EOF
+echo -e "\n\nTotalseconds: $SECONDS\n"
+exit

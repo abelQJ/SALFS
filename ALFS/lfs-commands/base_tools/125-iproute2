@@ -1,0 +1,13 @@
+#!/bin/bash
+set +h
+set -e
+
+cd $PKGDIR
+sed -i /ARPD/d Makefile
+sed -i 's/arpd.8//' man/man8/Makefile
+rm -v doc/arpd.sgml
+sed -i 's/m_ipt.o//' tc/Makefile
+make
+make DOCDIR=/usr/share/doc/iproute2-4.9.0 install
+echo -e "\n\nTotalseconds: $SECONDS\n"
+exit

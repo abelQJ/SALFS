@@ -1,0 +1,19 @@
+#!/bin/bash
+set +h
+set -e
+
+cd $PKGDIR
+./configure --prefix=/usr                            \
+            --exec-prefix=                           \
+            --libdir=/usr/lib                        \
+            --docdir=/usr/share/doc/procps-ng-3.3.12 \
+            --disable-static                         \
+            --disable-kill
+make
+# sed -i -r 's|(pmap_initname)\\\$|\1|' testsuite/pmap.test/pmap.exp >> $TEST_LOG 2>&1
+# make -k check >> $TEST_LOG 2>&1 || true
+make install
+mv -v /usr/lib/libprocps.so.* /lib
+ln -sfv ../../lib/$(readlink /usr/lib/libprocps.so) /usr/lib/libprocps.so
+echo -e "\n\nTotalseconds: $SECONDS\n"
+exit

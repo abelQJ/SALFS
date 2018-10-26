@@ -1,0 +1,16 @@
+#!/bin/bash
+set +h
+set -e
+
+cd $PKGDIR
+sed -i 's/usr/tools/'       build-aux/help2man
+sed -i 's/panic-tests.sh//' Makefile.in
+./configure --prefix=/usr --bindir=/bin
+make
+make html
+# make -k check >> $TEST_LOG 2>&1 || true
+make install
+install -d -m755           /usr/share/doc/sed-4.4
+install -m644 doc/sed.html /usr/share/doc/sed-4.4
+echo -e "\n\nTotalseconds: $SECONDS\n"
+exit

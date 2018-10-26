@@ -1,0 +1,19 @@
+#!/bin/bash
+set +h
+set -e
+
+cd $PKGDIR
+./config --prefix=/usr         \
+         --openssldir=/etc/ssl \
+         --libdir=lib          \
+         shared                \
+         zlib-dynamic &&
+make depend           &&
+make -j1
+
+make MANDIR=/usr/share/man MANSUFFIX=ssl install &&
+install -dv -m755 /usr/share/doc/openssl-1.0.2k  &&
+cp -vfr doc/*     /usr/share/doc/openssl-1.0.2k
+
+echo -e "\n\nTotalseconds: $SECONDS\n"
+exit

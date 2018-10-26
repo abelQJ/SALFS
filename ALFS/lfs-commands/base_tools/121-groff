@@ -1,0 +1,10 @@
+#!/bin/bash
+set +h
+set -e
+
+cd $PKGDIR
+PAGE=letter ./configure --prefix=/usr
+make
+make install
+echo -e "\n\nTotalseconds: $SECONDS\n"
+exit

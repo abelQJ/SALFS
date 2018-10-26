@@ -1,0 +1,15 @@
+#!/bin/bash
+set +h
+set -e
+
+cd $PKGDIR
+cp -v configure{,.orig}
+sed 's:/usr/local/bin:/bin:' configure.orig > configure
+./configure --prefix=/tools       \
+            --with-tcl=/tools/lib \
+            --with-tclinclude=/tools/include
+make
+# make -k test >> $TEST_LOG 2>&1 || true
+make SCRIPTS="" install
+echo -e "\n\nTotalseconds: $SECONDS\n"
+exit
